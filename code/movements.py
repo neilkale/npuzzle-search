@@ -4,37 +4,34 @@ class Movements:
         self.node = node_copy
         self.blank_space = blank_space
 
-    def move(self, direction):
+    def move(self, direction,size):
         if direction == "up":
             self.up()
+            self.size = size
         if direction == "down":
             self.down()
+            self.size = size
         if direction == "right":
             self.right()
+            self.size = size
         if direction == "left":
             self.left()
+            self.size = size
 
     # movements
-    def right(self):
-        self.node[self.blank_space - 1], self.node[self.blank_space] = self.current_node_array[self.blank_space], self.node[
-            self.blank_space - 1]
-        return "successfully moved"
-
-    def left(self):
-        self.node[self.blank_space + 1], self.node[self.blank_space] = self.current_node_array[
-            self.blank_space], self.node[
-            self.blank_space + 1]
-        return "successfully moved"
-
     def up(self):
-        self.node[self.blank_space - 3], self.node[self.blank_space] = self.current_node_array[
-            self.blank_space], self.node[
-            self.blank_space - 3]
+        self.node[self.blank_space - self.size], self.node[self.blank_space] = self.current_node_array[self.blank_space], self.node[self.blank_space - self.size]
         return "successfully moved"
 
     def down(self):
-        self.node[self.blank_space + 3], self.node[self.blank_space] = self.current_node_array[
-            self.blank_space], self.node[
-            self.blank_space + 3]
+        self.node[self.blank_space + self.size], self.node[self.blank_space] = self.current_node_array[self.blank_space], self.node[self.blank_space + self.size]
+        return "successfully moved"
+
+    def left(self):
+        self.node[self.blank_space - 1], self.node[self.blank_space] = self.current_node_array[self.blank_space], self.node[self.blank_space - 1]
+        return "successfully moved"
+
+    def right(self):
+        self.node[self.blank_space + 1], self.node[self.blank_space] = self.current_node_array[self.blank_space], self.node[self.blank_space + 1]
         return "successfully moved"
 
