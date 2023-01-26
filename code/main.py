@@ -11,16 +11,19 @@ os.system('clear')
 start = timeit.default_timer()
 
 heuristic = int(input(
-    "Choose a Heuristic: \n 1. Manhattan Distance \n Enter : "))
+    "Choose a Heuristic: \n 1. Manhattan Distance \n 2. Manhattan By Weight Distance \n Enter : "))
 
 
 """
 1 3 4
-2 0 5
+2 B 5
 -----
 1 2 3
-4 5 0
+4 5 B
 """
+
+# For reading the initial state from csv as matrix
+initial_state = utility.read_data_csv('../board1.csv')
 
 initial_state = [1, 3, 4, 2, 0, 5]
 final_state = [1, 2, 3, 4, 5, 0]

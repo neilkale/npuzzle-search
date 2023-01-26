@@ -9,6 +9,10 @@ class Heuristic:
         distance = sum(abs((val - 1) % 3 - i % 3) + abs((val - 1) // 3 - i // 3)
                        for i, val in enumerate(self.arr) if val)
         return distance
+        
+    def manhattan_by_wieght(self,arr, distance):
+        print(arr)
+        return distance
 
 # Distance Class to Calculate the Manhattan and Misplaced Tiles and new Distance.
 class Distance:
@@ -21,6 +25,8 @@ class Distance:
                 return 0
 
         obj = Heuristic(arr, goal)
-        if type == "manhattan" or heuristic == 1:
+        if heuristic == 1:
             distance = obj.manhattan(distance)
+        elif heuristic == 2:
+            distance = obj.manhattan_by_wieght(arr, distance)
         return distance
