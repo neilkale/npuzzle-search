@@ -24,8 +24,9 @@ heuristic = int(input(
 
 # For reading the initial state from csv as matrix
 initial_state = utility.read_data_csv('../board1.csv')
+print(initial_state)
 
-initial_state = [1, 3, 4, 2, 0, 5]
+# initial_state = [1, 3, 4, 2, 0, 5]
 final_state = [1, 2, 3, 4, 5, 0]
 
 All_states = []
