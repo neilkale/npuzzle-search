@@ -37,15 +37,19 @@ class Node:
         self.parent = parent
 
     # exploring the next states
-    def expand_node(fringe, explored_nodes, current_node, goal_node, blank_space, g, count, heuristic, size):
+    def expand_node(fringe, explored_nodes, current_node, goal_node, blank_spaces, g, count, heuristic, size):
         a = [list(item.get_current_state()) for item in explored_nodes]
         explored_nodes.append(current_node)
         current_node_array = np.asarray(current_node.get_current_state())
         
-        for item in blank_space : # considered blankspace as a list of index with 0 value
-            if item - size >=0:   # size is size of matrix
+        for blank_space_index in blank_spaces : # considered blankspace as a list of index with 0 value
+            #print(blank_space_index+1, size[0]*size[1]+1 - size[1])
+            
+            #if item - size[0]*size[1] >=0:   # size is size of matrix
+            if blank_space_index+1 > size[1]: #blank space is not on top layer
+                #print('not on top')
                 node_copy = current_node_array.copy()
-                move = Movements(node_copy, current_node_array, item)
+                move = Movements(node_copy, current_node_array, blank_space_index,size)
                 # move move current up
                 move.move("up", size)
                 distance = Distance.calculate(node_copy, goal_node, heuristic)
@@ -57,9 +61,10 @@ class Node:
                     node_copy.update_parent(current_node)
                     fringe.append(node_copy)
 
-            if item + size < len(current_node_array):
+            if blank_space_index+1 < size[0]*size[1]+1 - size[1]: #blank space is not on bottom layer
+                #print('not on bottom')
                 node_copy = current_node_array.copy()
-                move = Movements(node_copy, current_node_array, item)
+                move = Movements(node_copy, current_node_array, blank_space_index,size)
                 # move current node down
                 move.move("down", size)
                 distance = Distance.calculate(node_copy, goal_node, heuristic)
@@ -71,9 +76,9 @@ class Node:
                     node_copy.update_parent(current_node)
                     fringe.append(node_copy)
 
-            if item % size > 0:
+            if blank_space_index % size[0] > 0:
                 node_copy = current_node_array.copy()
-                move = Movements(node_copy, current_node_array, item)
+                move = Movements(node_copy, current_node_array, blank_space_index,size)
                 # move current node left
                 move.move("left", size)
                 distance = Distance.calculate(node_copy, goal_node, heuristic)
@@ -85,9 +90,9 @@ class Node:
                     node_copy.update_parent(current_node)
                     fringe.append(node_copy)
 
-            if item % size + 1 < size :
+            if blank_space_index % size[0] + 1 < size[0] :
                 node_copy = current_node_array.copy()
-                move = Movements(node_copy, current_node_array, blank_space)
+                move = Movements(node_copy, current_node_array, blank_spaces,size)
                 # move current node right
                 move.move("right", size)
                 distance = Distance.calculate(node_copy, goal_node, heuristic)

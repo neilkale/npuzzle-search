@@ -11,7 +11,7 @@ class Heuristic:
         return distance
         
     def manhattan_by_wieght(self,arr, distance):
-        print(arr)
+        #print(arr)
         return distance
 
 # Distance Class to Calculate the Manhattan and Misplaced Tiles and new Distance.

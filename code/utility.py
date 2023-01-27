@@ -10,6 +10,7 @@ def write_data(data,file):
 def read_data_csv(file):
     df = pd.read_csv(file, sep=',', header=None)
     df = df.values
+    board_dims = [len(df), len(df[0])] #height, width
     board = []
 
     for i, row in enumerate(df):
@@ -23,4 +24,4 @@ def read_data_csv(file):
                     continue
             else:
                 board.append(col)
-    return board
+    return board, board_dims
