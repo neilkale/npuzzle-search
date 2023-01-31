@@ -39,9 +39,9 @@ final_state_blanks_at_beginning = Node(final_state_blanks_at_beginning)
 explored_nodes = []
 fringe = [initial_state]
 distance0 = Distance.calculate(
-    initial_state.get_current_state(), final_state_blanks_at_end.get_current_state(), heuristic)
+    initial_state.get_current_state(), final_state_blanks_at_end.get_current_state(), heuristic, size)
 distance1 = Distance.calculate(
-    initial_state.get_current_state(), final_state_blanks_at_beginning.get_current_state(), heuristic)
+    initial_state.get_current_state(), final_state_blanks_at_beginning.get_current_state(), heuristic, size)
 
 print(distance0,distance1)
 if distance1 < distance0:
@@ -76,7 +76,7 @@ while not not fringe:
     # check if we reached goal state or not
     if np.array_equal(np.asarray(current_node.get_current_state()), goal_node):
         distance = Distance.calculate(np.asarray(
-            current_node.get_current_state()), goal_node, heuristic)
+            current_node.get_current_state()), goal_node, heuristic, size)
         explored_nodes.append(current_node)
         Puzzle.goal_reached(explored_nodes, count, size)
         fringe = []
