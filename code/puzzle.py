@@ -1,3 +1,5 @@
+import numpy as np
+
 class Puzzle:
     def least_fn(fringe):
         fn_fringe = []
@@ -7,21 +9,37 @@ class Puzzle:
         minimum_fn_index = fn_fringe.index(minimum_fn)
         return minimum_fn_index
 
-    def print_state(node):
+    def print_state(node, size):
+
         print("g(n) = ", node.get_gn(), " h(n) = ",
               node.get_hn(), " f(n) = ", node.get_fn(), "\n")
-        print(node.get_current_state()[0], " | ", node.get_current_state()[
-              1], " | ", node.get_current_state()[2])
-        print("--------------")
-        print(node.get_current_state()[3], " | ", node.get_current_state()[
-              4], " | ", node.get_current_state()[5])
+
+        print(np.matrix(node.get_current_state()).reshape(size))
+        # line = "\n"
+        # for k in range(0,size[1]):
+        #     line = line + "----"
+
+        # print(line)
+        # for i in range(0,size[0]):
+        #     print("| ", end='')
+        #     for j in range(0,size[1]):
+        #         print(node.get_current_state()[i*size[0]+j], "| ", end='')
+        #     print(line)
+        print("----------------------------------------------------------\n")
+
+
+        # print(node.get_current_state()[0], " | ", node.get_current_state()[
+        #       1], " | ", node.get_current_state()[2])
+        # print("--------------")
+        # print(node.get_current_state()[3], " | ", node.get_current_state()[
+        #       4], " | ", node.get_current_state()[5])
 
         # print("--------------")
         # print(node.get_current_state()[6], " | ", node.get_current_state()[7], " | "
         #       , node.get_current_state()[8])
-        print("----------------------------------------------------------\n")
+        # print("----------------------------------------------------------\n")
 
-    def goal_reached(explored_nodes, count):
+    def goal_reached(explored_nodes, count, size):
         nodes_expanded = len(explored_nodes) - 1
         path = []
         init = explored_nodes[0]
@@ -35,7 +53,7 @@ class Puzzle:
         path.reverse()
 
         for i in path:
-            Puzzle.print_state(i)
+            Puzzle.print_state(i, size)
 
         print("Goal Reached \n")
         print("The number of nodes expanded: ", nodes_expanded, "\n")

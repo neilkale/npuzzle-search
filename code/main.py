@@ -65,7 +65,7 @@ while not not fringe:
         distance = Distance.calculate(np.asarray(
             current_node.get_current_state()), goal_node, heuristic)
         explored_nodes.append(current_node)
-        Puzzle.goal_reached(explored_nodes, count)
+        Puzzle.goal_reached(explored_nodes, count, size)
         fringe = []
     elif not np.array_equal(current_node, goal_node):
         zero = np.where(np.asarray(
