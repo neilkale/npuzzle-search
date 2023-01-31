@@ -27,17 +27,30 @@ heuristic = int(input(
 initial_state, size = utility.read_data_csv('../board1.csv')
 final_states = utility.get_final_states(initial_state, size)
 # To Do: implement a* for multiple solutions  
-final_state = final_states[0]
+final_state_blanks_at_end = final_states[0]
+final_state_blanks_at_beginning = final_states[1]
 
 All_states = []
 data = []
 
 initial_state = Node(initial_state)
-final_state = Node(final_state)
+final_state_blanks_at_end = Node(final_state_blanks_at_end)
+final_state_blanks_at_beginning = Node(final_state_blanks_at_beginning)
 explored_nodes = []
 fringe = [initial_state]
-distance = Distance.calculate(
-    initial_state.get_current_state(), final_state.get_current_state(), heuristic)
+distance0 = Distance.calculate(
+    initial_state.get_current_state(), final_state_blanks_at_end.get_current_state(), heuristic)
+distance1 = Distance.calculate(
+    initial_state.get_current_state(), final_state_blanks_at_beginning.get_current_state(), heuristic)
+
+print(distance0,distance1)
+if distance1 < distance0:
+    distance = distance1
+    final_state = final_state_blanks_at_beginning
+else:
+    distance = distance0
+    final_state = final_state_blanks_at_end
+
 fringe[0].update_hn(distance)
 count = 1
 
