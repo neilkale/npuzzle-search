@@ -2,7 +2,6 @@ class Heuristic:
     def __init__(self, current_state, goal):
         self.current_state = current_state
         self.goal = goal
-        self.blank_original = (1,2)
 
     def manhattan(self, distance, size):
         distance = 0
