@@ -2,12 +2,16 @@ class Heuristic:
     def __init__(self, arr, goal):
         self.arr = arr
         self.goal = goal
-        self.matrix = []
         self.blank_original = (1,2)
 
-    def manhattan(self, distance):
-        distance = sum(abs((val - 1) % 3 - i % 3) + abs((val - 1) // 3 - i // 3)
-                       for i, val in enumerate(self.arr) if val)
+    def manhattan(self, distance, size):
+        distance = 0
+        for i in range(0,length(self.arr)) 
+            goal_x = self.arr[i] % size[1]
+            goal_y = (int) (self.arr[i] / size[1])
+            curr_x = i % size[1]
+            curr_y = (int) (i / size[1])
+            distance = distance + abs(goal_x - curr_x) + abs(goal_y - curr_y)
         return distance
         
     def manhattan_by_wieght(self,arr, distance):
@@ -16,7 +20,7 @@ class Heuristic:
 
 # Distance Class to Calculate the Manhattan and Misplaced Tiles and new Distance.
 class Distance:
-    def calculate(arr, goal, heuristic):
+    def calculate(arr, goal, heuristic, size):
         distance = 0
         if type(arr) != list:
             arr = arr.tolist()
@@ -26,7 +30,7 @@ class Distance:
 
         obj = Heuristic(arr, goal)
         if heuristic == 1:
-            distance = obj.manhattan(distance)
+            distance = obj.manhattan(distance, size)
         elif heuristic == 2:
             distance = obj.manhattan_by_wieght(arr, distance)
         return distance
