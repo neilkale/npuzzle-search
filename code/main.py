@@ -23,6 +23,7 @@ heuristic = int(input(
 """
 
 # For reading the initial state from csv as matrix
+# Size is an array in the format: [HEIGHT, WIDTH]
 initial_state, size = utility.read_data_csv('../board1.csv')
 final_states = utility.get_final_states(initial_state, size)
 # To Do: implement a* for multiple solutions  
