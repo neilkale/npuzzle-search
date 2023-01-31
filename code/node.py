@@ -90,9 +90,9 @@ class Node:
                     node_copy.update_parent(current_node)
                     fringe.append(node_copy)
 
-            if blank_space_index % size[0] + 1 < size[0] :
+            if (blank_space_index + 1) % size[0] != 0:
                 node_copy = current_node_array.copy()
-                move = Movements(node_copy, current_node_array, blank_spaces,size)
+                move = Movements(node_copy, current_node_array, blank_space_index,size)
                 # move current node right
                 move.move("right", size)
                 distance = Distance.calculate(node_copy, goal_node, heuristic)
