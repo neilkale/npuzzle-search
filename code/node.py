@@ -52,7 +52,7 @@ class Node:
                 move = Movements(node_copy, current_node_array, blank_space_index,size)
                 # move move current up
                 move.move("up", size)
-                distance = Distance.calculate(node_copy, goal_node, heuristic)
+                distance = Distance.calculate(node_copy, goal_node, heuristic,size)
                 count = count + 1
                 if not list(node_copy) in a:
                     node_copy = Node(node_copy)
@@ -67,7 +67,7 @@ class Node:
                 move = Movements(node_copy, current_node_array, blank_space_index,size)
                 # move current node down
                 move.move("down", size)
-                distance = Distance.calculate(node_copy, goal_node, heuristic)
+                distance = Distance.calculate(node_copy, goal_node, heuristic,size)
                 count = count + 1
                 if not list(node_copy) in a:
                     node_copy = Node(node_copy)
@@ -81,7 +81,7 @@ class Node:
                 move = Movements(node_copy, current_node_array, blank_space_index,size)
                 # move current node left
                 move.move("left", size)
-                distance = Distance.calculate(node_copy, goal_node, heuristic)
+                distance = Distance.calculate(node_copy, goal_node, heuristic,size)
                 count = count + 1
                 if not list(node_copy) in a:
                     node_copy = Node(node_copy)
@@ -95,7 +95,7 @@ class Node:
                 move = Movements(node_copy, current_node_array, blank_space_index,size)
                 # move current node right
                 move.move("right", size)
-                distance = Distance.calculate(node_copy, goal_node, heuristic)
+                distance = Distance.calculate(node_copy, goal_node, heuristic,size)
                 count = count + 1
                 if not list(node_copy) in a:
                     node_copy = Node(node_copy)
