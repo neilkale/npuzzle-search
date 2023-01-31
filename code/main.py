@@ -23,12 +23,10 @@ heuristic = int(input(
 """
 
 # For reading the initial state from csv as matrix
-initial_state,size = utility.read_data_csv('../board1.csv')
-
-  
-
-# initial_state = [1, 3, 4, 2, 0, 5]
-final_state = [1, 2, 3, 4, 5, 0, 6, 7, 8]
+initial_state, size = utility.read_data_csv('../board1.csv')
+final_states = utility.get_final_states(initial_state, size)
+# To Do: implement a* for multiple solutions  
+final_state = final_states[0]
 
 All_states = []
 data = []
