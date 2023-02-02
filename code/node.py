@@ -22,7 +22,7 @@ class Node:
         return self.gn
 
     def get_fn(self):
-        return self.gn + self.hn
+        return self.hn
 
     def get_current_state(self):
         return self.child
@@ -37,7 +37,7 @@ class Node:
         self.parent = parent
 
     # exploring the next states
-    def expand_node(fringe, explored_nodes, current_node, goal_node, blank_spaces, g, count, heuristic, size):
+    def expand_node(fringe, explored_nodes, current_node, goal_node, blank_spaces, g, count, size):
         a = [list(item.get_current_state()) for item in explored_nodes]
         explored_nodes.append(current_node)
         current_node_array = np.asarray(current_node.get_current_state())
@@ -52,7 +52,7 @@ class Node:
                 move = Movements(node_copy, current_node_array, blank_space_index,size)
                 # move move current up
                 move.move("up", size)
-                distance = Distance.calculate(node_copy, goal_node, heuristic,size)
+                distance = Distance.calculate(node_copy, goal_node,size)
           
                 if not list(node_copy) in a:
                     node_copy = Node(node_copy)
@@ -68,7 +68,7 @@ class Node:
                 move = Movements(node_copy, current_node_array, blank_space_index,size)
                 # move current node down
                 move.move("down", size)
-                distance = Distance.calculate(node_copy, goal_node, heuristic,size)
+                distance = Distance.calculate(node_copy, goal_node,size)
                 
                 if not list(node_copy) in a:
                     node_copy = Node(node_copy)
@@ -83,7 +83,7 @@ class Node:
                 move = Movements(node_copy, current_node_array, blank_space_index,size)
                 # move current node left
                 move.move("left", size)
-                distance = Distance.calculate(node_copy, goal_node, heuristic,size)
+                distance = Distance.calculate(node_copy, goal_node,size)
            
                 if not list(node_copy) in a:
                     node_copy = Node(node_copy)
@@ -98,7 +98,7 @@ class Node:
                 move = Movements(node_copy, current_node_array, blank_space_index,size)
                 # move current node right
                 move.move("right", size)
-                distance = Distance.calculate(node_copy, goal_node, heuristic,size)
+                distance = Distance.calculate(node_copy, goal_node,size)
                 
                 if not list(node_copy) in a:
                     node_copy = Node(node_copy)

@@ -8,11 +8,11 @@ class Puzzle:
         minimum_fn = min(fn_fringe)
         minimum_fn_index = fn_fringe.index(minimum_fn)
         return minimum_fn_index
-
+    
     def print_state(node, size):
 
-        print("g(n) = ", node.get_gn(), " h(n) = ",
-              node.get_hn(), " f(n) = ", node.get_fn(), "\n")
+        print( " h(n) = ",
+              node.get_hn(), "\n")
 
         print(np.matrix(node.get_current_state()).reshape(size))
         # line = "\n"

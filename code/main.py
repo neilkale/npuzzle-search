@@ -5,14 +5,17 @@ from node import Distance
 from node import Node
 from puzzle import Puzzle
 import utility
+import math
+import sys
+import random
 
 os.system('clear')
 
+
+Run_time = int(input(" Enter time in seconds how long to run hill climb search  \n Enter : "))
+
 start = timeit.default_timer()
-
-heuristic = int(input(
-    "Choose a Heuristic: \n 1. Manhattan Distance \n 2. Manhattan By Weight Distance \n Enter : "))
-
+Current_time = start
 
 """
 1 3 4
@@ -38,10 +41,8 @@ final_state_blanks_at_end = Node(final_state_blanks_at_end)
 final_state_blanks_at_beginning = Node(final_state_blanks_at_beginning)
 explored_nodes = []
 fringe = [initial_state]
-distance0 = Distance.calculate(
-    initial_state.get_current_state(), final_state_blanks_at_end.get_current_state(), heuristic, size)
-distance1 = Distance.calculate(
-    initial_state.get_current_state(), final_state_blanks_at_beginning.get_current_state(), heuristic, size)
+distance0 = Distance.calculate(initial_state.get_current_state(), final_state_blanks_at_end.get_current_state(), size=size)
+distance1 = Distance.calculate(initial_state.get_current_state(), final_state_blanks_at_beginning.get_current_state(), size=size)
 
 print(distance0,distance1)
 if distance1 < distance0:
@@ -54,39 +55,53 @@ else:
 fringe[0].update_hn(distance)
 count = 1
 
+
 print("---------------Printing Solution Path---------------\n \n")
 
-while not not fringe:
-    # select minimum fn for expand
-    minimum_fn_index = Puzzle.least_fn(fringe)
-    current_node = fringe.pop(minimum_fn_index)
 
+schedule = lambda t: 3000 * math.exp(-0.005 * t) if t < 5000 else 0
+
+current_node = fringe.pop(0)
+goal_node = np.asarray(final_state.get_current_state())
+g = current_node.get_gn() + 1
+
+#Function to calculate the probability, if heuristic of next node is higher than current node
+def probability (chance):     
+    if (chance>0.01):               
+        return chance > random.uniform(0.0,1.0)
+    else:
+        return False
+
+for t in range(sys.maxsize):   
+    temprature = schedule(t)
+    print ("curret temp =",temprature)
+    
     if type(current_node.child) != list:
         status = ""
-        All_states.append(
-            {'list': current_node.child.tolist(), 'distance': current_node.hn})
+        All_states.append({'list': current_node.child.tolist(), 'distance': current_node.hn})
     else:
-        All_states.append({'list': current_node.child,
-                          'distance': current_node.hn})
-
-
-    g = current_node.get_gn() + 1
-    goal_node = np.asarray(final_state.get_current_state())
-
-    # check if we reached goal state or not
-    if np.array_equal(np.asarray(current_node.get_current_state()), goal_node):
-        distance = Distance.calculate(np.asarray(
-            current_node.get_current_state()), goal_node, heuristic, size)
+        All_states.append({'list': current_node.child,'distance': current_node.hn})
+    
+    if (temprature == 0):  #If tempratre reaches to zero 
         explored_nodes.append(current_node)
         Puzzle.goal_reached(explored_nodes, count, size)
-        fringe = []
-    elif not np.array_equal(current_node, goal_node):
-        zero = np.where(np.asarray(
-            current_node.get_current_state()) == 0)[0]#[0]
-        #print(zero)
-        count = Node.expand_node(
-            fringe, explored_nodes, current_node, goal_node, zero, g, count, heuristic, size)
-
+        break
+    else:
+        zero = np.where(np.asarray(current_node.get_current_state()) == 0)[0]#[0]
+        count = Node.expand_node(fringe, explored_nodes, current_node, goal_node, zero, g, count, size)
+        fringe_len= len(fringe)-1
+        random_index = random.choice(range(0,fringe_len,1))
+        next_node = fringe.pop(random_index)
+        delta_e = Distance.calculate(np.asarray(next_node.get_current_state()), goal_node, size) - Distance.calculate(np.asarray(current_node.get_current_state()), goal_node, size) 
+        print (delta_e)
+        if delta_e <= 0 or probability(math.exp(delta_e/temprature) if temprature>=0.013 else 0.001 ):
+            current_node = next_node
+    
+    Current_time = timeit.default_timer()
+    if (Current_time - start > Run_time ):
+        explored_nodes.append(current_node)
+        Puzzle.goal_reached(explored_nodes, count, size)
+        break
 
 stop = timeit.default_timer()
 print("all : ", len(All_states))
