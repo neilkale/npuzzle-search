@@ -60,12 +60,7 @@ while  fringe:
     # select minimum fn for expand
     minimum_fn_index = Puzzle.least_fn(fringe)
     current_node = fringe.pop(minimum_fn_index)
-
-    if type(current_node.child) != list:
-        status = ""
-        All_states.append(current_node.child)
-    else:
-        All_states.append(current_node.child)
+    All_states.append(current_node.child)
 
 
     g = current_node.get_gn() + 1
