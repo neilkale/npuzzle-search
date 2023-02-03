@@ -63,16 +63,14 @@ while not not fringe:
 
     if type(current_node.child) != list:
         status = ""
-        All_states.append(
-            {'list': current_node.child.tolist(), 'distance': current_node.hn})
+        All_states.append(current_node.child)
     else:
-        All_states.append({'list': current_node.child,
-                          'distance': current_node.hn})
+        All_states.append(current_node.child)
 
 
     g = current_node.get_gn() + 1
     goal_node = np.asarray(final_state.get_current_state())
-
+    
     # check if we reached goal state or not
     if np.array_equal(np.asarray(current_node.get_current_state()), goal_node):
         distance = Distance.calculate(np.asarray(
@@ -82,7 +80,7 @@ while not not fringe:
         fringe = []
     elif not np.array_equal(current_node, goal_node):
         zero = np.where(np.asarray(
-            current_node.get_current_state()) == 0)[0]#[0]
+            current_node.get_current_state()) == 0)[0]
         #print(zero)
         count = Node.expand_node(
             fringe, explored_nodes, current_node, goal_node, zero, g, count, heuristic, size)
