@@ -43,7 +43,7 @@ distance0 = Distance.calculate(
 distance1 = Distance.calculate(
     initial_state.get_current_state(), final_state_blanks_at_beginning.get_current_state(), heuristic, size)
 
-print(distance0,distance1)
+
 if distance1 < distance0:
     distance = distance1
     final_state = final_state_blanks_at_beginning

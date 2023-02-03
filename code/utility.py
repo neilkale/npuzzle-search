@@ -27,7 +27,6 @@ def read_data_csv(file):
     return board, board_dims
 
 def get_final_states(initial_state, size):
-    print(initial_state)
     blanks = [0]*initial_state.count(0)
     just_numbers=[i for i in initial_state if i!=0]
     just_numbers.sort()
