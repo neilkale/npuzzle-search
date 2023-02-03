@@ -13,9 +13,10 @@ class Heuristic:
                 goal_y = int((goal_index - goal_x) / size[1])
                 curr_x = i % size[1]
                 curr_y = int((i - curr_x) / size[1])
-                distance = distance + abs(goal_x - curr_x) + abs(goal_y - curr_y)
+                temp = abs(goal_x - curr_x) + abs(goal_y - curr_y)
+                distance = distance + temp
                 if include_weight:
-                    distance = distance * self.current_state[i]
+                    distance = (temp * self.current_state[i]) + distance
             
         return distance
 
