@@ -56,7 +56,7 @@ count = 1
 
 print("---------------Printing Solution Path---------------\n \n")
 
-while not not fringe:
+while  fringe:
     # select minimum fn for expand
     minimum_fn_index = Puzzle.least_fn(fringe)
     current_node = fringe.pop(minimum_fn_index)
