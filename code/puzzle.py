@@ -10,35 +10,25 @@ class Puzzle:
         return minimum_fn_index
     
     def print_state(node, size):
+        base = "-------"
 
-        print( " h(n) = ",
-              node.get_hn(), "\n")
+        print("g(n) = ", node.get_gn(), " h(n) = ",
+              node.get_hn(), " f(n) = ", node.get_fn(), "\n")
 
-        print(np.matrix(node.get_current_state()).reshape(size))
-        # line = "\n"
-        # for k in range(0,size[1]):
-        #     line = line + "----"
+        matrix = np.matrix(node.get_current_state()).reshape(size)
 
-        # print(line)
-        # for i in range(0,size[0]):
-        #     print("| ", end='')
-        #     for j in range(0,size[1]):
-        #         print(node.get_current_state()[i*size[0]+j], "| ", end='')
-        #     print(line)
-        print("----------------------------------------------------------\n")
+        for i in range(size[0]):
+            for j in range(size[1]):
+                if matrix[i,j] < 10:
+                    print("\t", matrix[i, j], end="  |")
+                else:
+                    print("\t", matrix[i, j], end=" |")
+            if i != (size[0]-1):
+                print("\n \t", base*size[0])
+                
 
-
-        # print(node.get_current_state()[0], " | ", node.get_current_state()[
-        #       1], " | ", node.get_current_state()[2])
-        # print("--------------")
-        # print(node.get_current_state()[3], " | ", node.get_current_state()[
-        #       4], " | ", node.get_current_state()[5])
-
-        # print("--------------")
-        # print(node.get_current_state()[6], " | ", node.get_current_state()[7], " | "
-        #       , node.get_current_state()[8])
-        # print("----------------------------------------------------------\n")
-
+        print("\n----------------------------------------------------------\n") 
+        
     def goal_reached(explored_nodes, count, size):
         nodes_expanded = len(explored_nodes) - 1
         path = []
