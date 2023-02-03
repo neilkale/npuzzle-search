@@ -47,65 +47,69 @@ class Node:
             
             #if item - size[0]*size[1] >=0:   # size is size of matrix
             if blank_space_index+1 > size[1]: #blank space is not on top layer
-                #print('not on top')
-                node_copy = current_node_array.copy()
-                move = Movements(node_copy, current_node_array, blank_space_index,size)
-                # move move current up
-                move.move("up", size)
-                distance = Distance.calculate(node_copy, goal_node, heuristic,size)
-          
-                if not list(node_copy) in a:
-                    node_copy = Node(node_copy)
-                    node_copy.update_gn(g)
-                    node_copy.update_hn(distance)
-                    node_copy.update_parent(current_node)
-                    fringe.append(node_copy)
-                    count = count + 1
+                if current_node_array[blank_space_index - size[1]] != 0:
+                    #print('not on top')
+                    node_copy = current_node_array.copy()
+                    move = Movements(node_copy, current_node_array, blank_space_index,size)
+                    # move move current up
+                    move.move("up", size)
+                    distance = Distance.calculate(node_copy, goal_node, heuristic,size)
+            
+                    if not list(node_copy) in a:
+                        node_copy = Node(node_copy)
+                        node_copy.update_gn(g)
+                        node_copy.update_hn(distance)
+                        node_copy.update_parent(current_node)
+                        fringe.append(node_copy)
+                        count = count + 1
 
             if blank_space_index+1 < size[0]*size[1]+1 - size[1]: #blank space is not on bottom layer
-                #print('not on bottom')
-                node_copy = current_node_array.copy()
-                move = Movements(node_copy, current_node_array, blank_space_index,size)
-                # move current node down
-                move.move("down", size)
-                distance = Distance.calculate(node_copy, goal_node, heuristic,size)
-                
-                if not list(node_copy) in a:
-                    node_copy = Node(node_copy)
-                    node_copy.update_gn(g)
-                    node_copy.update_hn(distance)
-                    node_copy.update_parent(current_node)
-                    fringe.append(node_copy)
-                    count = count + 1
+                if current_node_array[blank_space_index + size[1]] != 0:
+                    #print('not on bottom')
+                    node_copy = current_node_array.copy()
+                    move = Movements(node_copy, current_node_array, blank_space_index,size)
+                    # move current node down
+                    move.move("down", size)
+                    distance = Distance.calculate(node_copy, goal_node, heuristic,size)
+                    
+                    if not list(node_copy) in a:
+                        node_copy = Node(node_copy)
+                        node_copy.update_gn(g)
+                        node_copy.update_hn(distance)
+                        node_copy.update_parent(current_node)
+                        fringe.append(node_copy)
+                        count = count + 1
 
             if blank_space_index % size[0] > 0:
-                node_copy = current_node_array.copy()
-                move = Movements(node_copy, current_node_array, blank_space_index,size)
-                # move current node left
-                move.move("left", size)
-                distance = Distance.calculate(node_copy, goal_node, heuristic,size)
-           
-                if not list(node_copy) in a:
-                    node_copy = Node(node_copy)
-                    node_copy.update_gn(g)
-                    node_copy.update_hn(distance)
-                    node_copy.update_parent(current_node)
-                    fringe.append(node_copy)
-                    count = count + 1
+                if current_node_array[blank_space_index - 1] != 0:
+                    node_copy = current_node_array.copy()
+                    move = Movements(node_copy, current_node_array, blank_space_index,size)
+                    # move current node left
+                    move.move("left", size)
+                    distance = Distance.calculate(node_copy, goal_node, heuristic,size)
+                
+                    if not list(node_copy) in a:
+                        node_copy = Node(node_copy)
+                        node_copy.update_gn(g)
+                        node_copy.update_hn(distance)
+                        node_copy.update_parent(current_node)
+                        fringe.append(node_copy)
+                        count = count + 1
 
             if (blank_space_index + 1) % size[0] != 0:
-                node_copy = current_node_array.copy()
-                move = Movements(node_copy, current_node_array, blank_space_index,size)
-                # move current node right
-                move.move("right", size)
-                distance = Distance.calculate(node_copy, goal_node, heuristic,size)
-                
-                if not list(node_copy) in a:
-                    node_copy = Node(node_copy)
-                    node_copy.update_gn(g)
-                    node_copy.update_hn(distance)
-                    node_copy.update_parent(current_node)
-                    fringe.append(node_copy)
-                    count = count + 1
+                if current_node_array[blank_space_index + 1] != 0: 
+                    node_copy = current_node_array.copy()
+                    move = Movements(node_copy, current_node_array, blank_space_index,size)
+                    # move current node right
+                    move.move("right", size)
+                    distance = Distance.calculate(node_copy, goal_node, heuristic,size)
+                    
+                    if not list(node_copy) in a:
+                        node_copy = Node(node_copy)
+                        node_copy.update_gn(g)
+                        node_copy.update_hn(distance)
+                        node_copy.update_parent(current_node)
+                        fringe.append(node_copy)
+                        count = count + 1
         return count
 
