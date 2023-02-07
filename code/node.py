@@ -37,7 +37,7 @@ class Node:
         self.parent = parent
 
     @staticmethod
-    def update_expanded(goal_node, heuristic, size, current_node, fringe,node_copy, a, g, count):
+    def update_expanded(goal_node, heuristic, size, current_node, fringe,node_copy, a, g):
         distance = Distance.calculate(node_copy, goal_node, heuristic,size)    
         if not list(node_copy) in a:
             node_copy = Node(node_copy)
@@ -45,7 +45,6 @@ class Node:
             node_copy.update_hn(distance)
             node_copy.update_parent(current_node)
             fringe.append(node_copy)
-            count = count + 1
 
     # exploring the next states
     def expand_node(fringe, explored_nodes, current_node, goal_node, blank_spaces, g, count, heuristic, size):
@@ -54,8 +53,6 @@ class Node:
         current_node_array = np.asarray(current_node.get_current_state())
         
         for blank_space_index in blank_spaces : # considered blankspace as a list of index with 0 value
-            #print(blank_space_index+1, size[0]*size[1]+1 - size[1])
-            
             #if item - size[0]*size[1] >=0:   # size is size of matrix
             if blank_space_index+1 > size[1]: #blank space is not on top layer
                 if current_node_array[blank_space_index - size[1]] != 0:
@@ -64,7 +61,8 @@ class Node:
                     move = Movements(node_copy, current_node_array, blank_space_index,size)
                     # move move current up
                     move.move("up", size)
-                    Node.update_expanded(goal_node, heuristic, size, current_node, fringe,node_copy, a, g, count)
+                    Node.update_expanded(goal_node, heuristic, size, current_node, fringe,node_copy, a, g)
+                    count = count + 1
 
             if blank_space_index+1 < size[0]*size[1]+1 - size[1]: #blank space is not on bottom layer
                 if current_node_array[blank_space_index + size[1]] != 0:
@@ -73,7 +71,8 @@ class Node:
                     move = Movements(node_copy, current_node_array, blank_space_index,size)
                     # move current node down
                     move.move("down", size)
-                    Node.update_expanded(goal_node, heuristic, size, current_node, fringe,node_copy, a, g, count)
+                    Node.update_expanded(goal_node, heuristic, size, current_node, fringe,node_copy, a, g)
+                    count = count + 1
 
             if blank_space_index % size[0] > 0:
                 if current_node_array[blank_space_index - 1] != 0:
@@ -81,7 +80,8 @@ class Node:
                     move = Movements(node_copy, current_node_array, blank_space_index,size)
                     # move current node left
                     move.move("left", size)
-                    Node.update_expanded(goal_node, heuristic, size, current_node, fringe, node_copy, a, g, count)
+                    Node.update_expanded(goal_node, heuristic, size, current_node, fringe, node_copy, a, g)
+                    count = count + 1
 
             if (blank_space_index + 1) % size[0] != 0:
                 if current_node_array[blank_space_index + 1] != 0: 
@@ -89,6 +89,7 @@ class Node:
                     move = Movements(node_copy, current_node_array, blank_space_index,size)
                     # move current node right
                     move.move("right", size)
-                    Node.update_expanded(goal_node, heuristic, size, current_node, fringe,node_copy, a, g, count)
+                    Node.update_expanded(goal_node, heuristic, size, current_node, fringe,node_copy, a, g)
+                    count = count + 1
         return count
 
