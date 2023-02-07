@@ -6,6 +6,7 @@ from node import Node
 from puzzle import Puzzle
 import utility
 import astar
+import greedy
 
 def get_final_solution_state(initial_state, size, heuristic):
     final_states = utility.get_final_states(initial_state, size)
@@ -43,8 +44,9 @@ def main_function():
     initial_state, final_state, distance = get_final_solution_state(initial_state,size, heuristic)
        
 
-    All_states, stop = astar.astar(initial_state, final_state, distance, heuristic, size)
-    print("all : ", len(All_states))
-    print('Time: ', stop - start)
+    #All_states, stop = astar.astar(initial_state, final_state, distance, heuristic, size)
+    greedy.greedy(initial_state, final_state, distance, heuristic, size)
+    #print("all : ", len(All_states))
+    #print('Time: ', stop - start)
 
 main_function()
