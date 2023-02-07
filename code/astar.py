@@ -44,8 +44,7 @@ def astar(initial_state, final_state, distance, heuristic, size):
                 fringe, explored_nodes, current_node, goal_node, zero, g, count, heuristic, size)
 
     stop = timeit.default_timer()
-    return All_states, stop
-
+    
 
 def astar_greedy(initial_state, final_state, distance, heuristic, size):
 
@@ -82,5 +81,5 @@ def astar_greedy(initial_state, final_state, distance, heuristic, size):
             count = Node.expand_node_greedy_astar(
                 fringe, explored_nodes, current_node, final_state, zero, g, count, heuristic, size)
 
-    stop = timeit.default_timer()
-    return All_states, stop
+    
+    

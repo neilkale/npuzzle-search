@@ -6,8 +6,8 @@ from node import Node
 from puzzle import Puzzle
 import utility
 import astar
-import greedy
 
+# Call utility function to generate arrays for the two possible final states, and pick the closest to the starting position
 def get_final_solution_state(initial_state, size, heuristic):
     final_states = utility.get_final_states(initial_state, size)
     final_state_blanks_at_end = final_states[0]
@@ -32,7 +32,7 @@ def get_final_solution_state(initial_state, size, heuristic):
 def main_function():
     #Initialize
     os.system('cls')
-    start = timeit.default_timer()
+    
     # TODO Update to match specified format
     heuristic = int(input("Choose a Heuristic: \n 1. Manhattan Distance \n 2. Manhattan By Weight Distance \n Enter : "))
 
@@ -42,12 +42,18 @@ def main_function():
 
     # Get final state and update to node format
     initial_state, final_state, distance = get_final_solution_state(initial_state,size, heuristic)
-       
-    count = astar.astar_greedy(initial_state, final_state, distance, heuristic, size)
-    All_states, stop = astar.astar(initial_state, final_state, distance, heuristic, size)
-    #greedy.greedy(initial_state, final_state, distance, heuristic, size)
     
-    #print("all : ", len(All_states))
-    #print('Time: ', stop - start)
+    # Run A* Using the sliding tile heuristic
+    start = timeit.default_timer()
+    astar.astar(initial_state, final_state, distance, heuristic, size)
+    stop = timeit.default_timer()
+    print('Time: ', stop - start)
+
+    # Run A* with the greedy heuristic
+    start = timeit.default_timer()   
+    astar.astar_greedy(initial_state, final_state, distance, heuristic, size)
+    stop = timeit.default_timer()
+    print('Time: ', stop - start)
+    
 
 main_function()

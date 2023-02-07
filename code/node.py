@@ -63,6 +63,7 @@ class Node:
             fringe.append(node_copy)
     
     @staticmethod
+    # Expand greedy search nodes using the greedy search heuristic
     def update_expanded_greedy_star(goal_node, heuristic, size, current_node, fringe,node_copy, a, g, move_string):
         import greedy
             
