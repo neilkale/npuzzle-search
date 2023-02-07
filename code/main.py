@@ -43,9 +43,10 @@ def main_function():
     # Get final state and update to node format
     initial_state, final_state, distance = get_final_solution_state(initial_state,size, heuristic)
        
-
-    #All_states, stop = astar.astar(initial_state, final_state, distance, heuristic, size)
-    greedy.greedy(initial_state, final_state, distance, heuristic, size)
+    count = astar.astar_greedy(initial_state, final_state, distance, heuristic, size)
+    All_states, stop = astar.astar(initial_state, final_state, distance, heuristic, size)
+    #greedy.greedy(initial_state, final_state, distance, heuristic, size)
+    
     #print("all : ", len(All_states))
     #print('Time: ', stop - start)
 
