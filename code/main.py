@@ -13,18 +13,9 @@ start = timeit.default_timer()
 heuristic = int(input(
     "Choose a Heuristic: \n 1. Manhattan Distance \n 2. Manhattan By Weight Distance \n Enter : "))
 
-
-"""
-1 3 4
-2 B 5
------
-1 2 3
-4 5 B
-"""
-
 # For reading the initial state from csv as matrix
 # Size is an array in the format: [HEIGHT, WIDTH]
-initial_state, size = utility.read_data_csv('../board1.csv')
+initial_state, size = utility.read_data_csv('./board1.csv')
 final_states = utility.get_final_states(initial_state, size)
 # To Do: implement a* for multiple solutions  
 final_state_blanks_at_end = final_states[0]
@@ -43,7 +34,6 @@ distance0 = Distance.calculate(
 distance1 = Distance.calculate(
     initial_state.get_current_state(), final_state_blanks_at_beginning.get_current_state(), heuristic, size)
 
-
 if distance1 < distance0:
     distance = distance1
     final_state = final_state_blanks_at_beginning
@@ -61,7 +51,6 @@ while  fringe:
     minimum_fn_index = Puzzle.least_fn(fringe)
     current_node = fringe.pop(minimum_fn_index)
     All_states.append(current_node.child)
-
 
     g = current_node.get_gn() + 1
     goal_node = np.asarray(final_state.get_current_state())
