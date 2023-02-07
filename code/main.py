@@ -6,7 +6,7 @@ from node import Node
 from puzzle import Puzzle
 import utility
 
-os.system('clear')
+os.system('cls')
 
 start = timeit.default_timer()
 
@@ -79,7 +79,6 @@ while  fringe:
         #print(zero)
         count = Node.expand_node(
             fringe, explored_nodes, current_node, goal_node, zero, g, count, heuristic, size)
-
 
 stop = timeit.default_timer()
 print("all : ", len(All_states))
