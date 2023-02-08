@@ -33,12 +33,12 @@ def main_function():
     os.system('cls')
     start = timeit.default_timer()
     # TODO Update to match specified format
-    heuristic = int(input("Choose a Heuristic: \n 1. Manhattan Distance \n 2. Manhattan By Weight Distance \n Enter : "))
+    heuristic = int(input("Choose a Heuristic: \n 1. Manhattan Distance \n 2. Manhattan By Weight Distance \n 3. Manhattan with Pre calculation\n 4. Weighted Manhattan with Pre calculation\n Enter : "))
 
     # For reading the initial state from csv as matrix
     # Size is an array in the format: [HEIGHT, WIDTH]
-    initial_state, size = utility.read_data_csv('./board1.csv')
-
+    initial_state, size = utility.read_data_csv('../board1.csv')
+    utility.calculate_h(size)
     # Get final state and update to node format
     initial_state, final_state, distance = get_final_solution_state(initial_state,size, heuristic)
        

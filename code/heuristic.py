@@ -1,12 +1,31 @@
+import utility
 class Heuristic:
     def __init__(self, current_state, goal):
         self.current_state = current_state
         self.goal = goal
 
+    def misplaced_tiles(self):
+        tiles_indexs = []
+        for i in range(len(self.current_state)):
+            if self.current_state[i] != self.goal[i] and self.current_state[i] != 0:
+                tiles_indexs.append([i,self.goal.index(self.current_state[i])])
+        return tiles_indexs
+
+
+    def manhattan_pre(self, distance,include_weight = False):
+        hs = utility.distances
+        missplaced_tiles_index = self.misplaced_tiles()
+        for i in missplaced_tiles_index:
+            temp = (hs[i[0]]['h'][i[1]])
+            distance = distance + temp
+            if include_weight:
+                distance =  temp * self.current_state[i[0]] + distance
+
+        return distance
+
     def manhattan(self, distance, size, include_weight = False):
         for i in range(0,len(self.current_state)):
             if self.current_state[i] != 0:
-        
                 tile = self.current_state[i]
                 goal_index = self.goal.index(tile)
                 goal_x = goal_index % size[1]
@@ -17,7 +36,7 @@ class Heuristic:
                 distance = distance + temp
                 if include_weight:
                     distance = (temp * self.current_state[i]) + distance
-            
+        
         return distance
 
 # Distance Class to Calculate the Manhattan and Misplaced Tiles and new Distance.
@@ -35,4 +54,8 @@ class Distance:
             distance = obj.manhattan(distance, size)
         elif heuristic == 2:
             distance = obj.manhattan(distance, size, True)
+        elif heuristic == 3:
+            distance = obj.manhattan_pre(distance)
+        elif heuristic == 4:
+            distance = obj.manhattan_pre(distance, True)
         return distance

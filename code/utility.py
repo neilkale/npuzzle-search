@@ -1,4 +1,5 @@
 import pandas as pd
+import PreCalculateHs
 
 def write_data(data,file):
     with open(file, 'w') as f:
@@ -32,3 +33,14 @@ def get_final_states(initial_state, size):
     just_numbers.sort()
     final_states = [just_numbers+blanks,blanks+just_numbers]
     return(final_states)
+
+def get_final_states(initial_state, size):
+    blanks = [0]*initial_state.count(0)
+    just_numbers=[i for i in initial_state if i!=0]
+    just_numbers.sort()
+    final_states = [just_numbers+blanks,blanks+just_numbers]
+    return(final_states)
+
+def calculate_h(size):
+    global distances
+    distances = PreCalculateHs.run(size)
