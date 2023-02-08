@@ -11,10 +11,10 @@ class Puzzle:
     
     def print_state(node, size):
         base = "-------"
+     
 
-        print("g(n) = ", node.get_gn(), " h(n) = ",
-              node.get_hn(), " f(n) = ", node.get_fn(), "\n")
-
+        print( " h(n) = ", node.get_hn(), "\n")
+        
         matrix = np.matrix(node.get_current_state()).reshape(size)
 
         for i in range(size[0]):
@@ -25,8 +25,6 @@ class Puzzle:
                     print("\t", matrix[i, j], end=" |")
             if i != (size[0]-1):
                 print("\n \t", base*size[0])
-                
-
         print("\n----------------------------------------------------------\n") 
         
     def goal_reached(explored_nodes, count, size):
@@ -45,7 +43,7 @@ class Puzzle:
         for i in path:
             Puzzle.print_state(i, size)
 
-        print("Goal Reached \n")
+        #print("Goal Reached \n")
         print("The number of nodes expanded: ", nodes_expanded, "\n")
         print("The number of nodes generated: ", count, "\n")
         print("Path Cost: ", len(path) - 1, "\n")

@@ -14,6 +14,8 @@ class Heuristic:
                 curr_x = i % size[1]
                 curr_y = int((i - curr_x) / size[1])
                 distance = distance + abs(goal_x - curr_x) + abs(goal_y - curr_y)
+                #distance = (abs(goal_x - curr_x) + abs(goal_y - curr_y))*self.current_state[i] + distance
+                #distance = (distance * self.current_state[i]) + distance
             
             
         return distance

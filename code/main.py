@@ -59,19 +59,17 @@ count = 1
 print("---------------Printing Solution Path---------------\n \n")
 
 
-schedule = lambda t: 3000 * math.exp(-0.005 * t) if t < 5000 else 0
+schedule = lambda t: 10000 * math.exp(-0.000001 * t) if t < 5000 else 0
 
 current_node = fringe.pop(0)
 goal_node = np.asarray(final_state.get_current_state())
 g = current_node.get_gn() + 1
 
 #Function to calculate the probability, if heuristic of next node is higher than current node
-def probability (chance):     
-    if (chance>0.01):               
-        return chance > random.uniform(0.0,1.0)
-    else:
-        return False
+def probability (chance):
+    return chance > random.uniform(0.0,1.0)   
 
+check = 0
 for t in range(sys.maxsize):   
     temprature = schedule(t)
     #print ("curret temp =",temprature)
@@ -83,18 +81,21 @@ for t in range(sys.maxsize):
         break
     else:
         zero = np.where(np.asarray(current_node.get_current_state()) == 0)[0]#[0]
-        count = Node.expand_node(fringe, explored_nodes, current_node, goal_node, zero, g, count, size)
+        #print (zero)
+        count = Node.expand_node(fringe, explored_nodes, current_node, goal_node, zero, g, count, size,check)
         current_node_distance = Distance.calculate(np.asarray(current_node.get_current_state()), goal_node, size)
         #print("curr",current_node_distance)
         fringe_len= len(fringe)
-        print("fringe",fringe_len)
+        #print("fringe",fringe_len)
         herustic_diff = []
         k=0
-        print("current",np.asarray(current_node.get_current_state()))
+        #print("current",np.asarray(current_node.get_current_state()))
+        
         for i in range (0,len(fringe)):
             possible_next_node = fringe[i]
-            print("Possible",np.asarray(possible_next_node.get_current_state()))
-            possible_next_node_distance = Distance.calculate(np.asarray(possible_next_node.get_current_state()), goal_node, size)
+            #print("Possible",np.asarray(possible_next_node.get_current_state()))
+            #possible_next_node_distance = Distance.calculate(np.asarray(possible_next_node.get_current_state()), goal_node, size)
+            possible_next_node_distance = possible_next_node.get_hn()
             #print ("next",possible_next_node_distance)
             diff = possible_next_node_distance - current_node_distance
             #print ("diff",diff)
@@ -105,6 +106,7 @@ for t in range(sys.maxsize):
                 herustic_diff.append(diff)
                 #print(herustic_diff)
         minimum_fn = min(herustic_diff)
+
         minimum_fn_index = herustic_diff.index(minimum_fn)
         #print("index",minimum_fn_index)
         next_node = fringe[minimum_fn_index+k]
@@ -115,22 +117,29 @@ for t in range(sys.maxsize):
         #next_node = fringe.pop(random_indexz
         #print("curr",Distance.calculate(np.asarray(current_node.get_current_state()), goal_node, size) )
         #print("next",Distance.calculate(np.asarray(next_node.get_current_state()), goal_node, size) )
-        delta_e = Distance.calculate(np.asarray(next_node.get_current_state()), goal_node, size) - Distance.calculate(np.asarray(current_node.get_current_state()), goal_node, size) 
-        
-        if delta_e <= 0 or probability(math.exp(delta_e/temprature)) if temprature>=0.013 else probability (0.001):
+        delta_e = next_node.get_hn() - current_node_distance
+        t = probability(math.exp(-1 *delta_e/temprature)) if temprature>=0.1 else False
+        if delta_e > 0:
+           print (t)
+        print(delta_e)
+        if delta_e < 0 or t :
             current_node = next_node
-            goal_node = np.asarray(final_state.get_current_state())
+            #goal_node = np.asarray(final_state.get_current_state())
             if (np.array_equal(np.asarray(current_node.get_current_state()), goal_node)):
                 distance = Distance.calculate(np.asarray(current_node.get_current_state()), goal_node, size)
                 explored_nodes.append(current_node)
                 Puzzle.goal_reached(explored_nodes, count, size)
                 break
-        if type(current_node.child) != list:
-            status = ""
-            All_states.append({'list': current_node.child.tolist(), 'distance': current_node.hn})
+            if type(current_node.child) != list:
+                status = ""
+                All_states.append({'list': current_node.child.tolist(), 'distance': current_node.hn})
+            else:
+                All_states.append({'list': current_node.child,'distance': current_node.hn})
         else:
-            All_states.append({'list': current_node.child,'distance': current_node.hn})
+            next_node_1 = random.choice(fringe)
+            current_node = next_node_1
         fringe = []
+        check = 1
     Current_time = timeit.default_timer()
     if (Current_time - start > Run_time ):
         explored_nodes.append(current_node)
