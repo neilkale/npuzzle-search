@@ -1,6 +1,7 @@
 import numpy as np
 
 class Puzzle:
+
     def least_fn(fringe):
         fn_fringe = []
         for i in range(len(fringe)):
@@ -28,7 +29,7 @@ class Puzzle:
                     print("\t", matrix[i, j], end=" |")
             if i != (size[0]-1):
                 print("\n \t", base*size[0])
-                
+        
 
         print("\n----------------------------------------------------------\n")
         return node.get_branching_factor()
@@ -55,6 +56,7 @@ class Puzzle:
         branching_factor_array.pop()
         
         print("Goal Reached! \n")
+        print("Depth :", len(path))
         print("The number of nodes expanded: ", nodes_expanded, "\n")
         print("The number of nodes generated: ", count, "\n")
         print("Path Cost: ", len(path) - 1, "\n")

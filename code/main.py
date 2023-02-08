@@ -44,7 +44,7 @@ def main_function():
        
 
     All_states, stop = astar.astar(initial_state, final_state, distance, heuristic, size)
-    print("all : ", len(All_states))
+    # print("all : ", len(All_states))
     print('Time: ', stop - start)
 
 main_function()
