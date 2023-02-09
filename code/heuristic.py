@@ -6,7 +6,6 @@ class Heuristic:
     def manhattan(self, distance, size, include_weight = False):
         for i in range(0,len(self.current_state)):
             if self.current_state[i] != 0:
-        
                 tile = self.current_state[i]
                 goal_index = self.goal.index(tile)
                 goal_x = goal_index % size[1]
@@ -17,7 +16,6 @@ class Heuristic:
                 distance = distance + temp
                 if include_weight:
                     distance = (temp * self.current_state[i]) + distance
-            
         return distance
 
 # Distance Class to Calculate the Manhattan and Misplaced Tiles and new Distance.
@@ -26,12 +24,12 @@ class Distance:
         distance = 0
         if type(current_state) != list:
             current_state = current_state.tolist()
+        if type(goal) != list:
             goal = goal.tolist()
-            if(current_state == goal):
-                return 0
-
+        if(current_state == goal):
+            return 0
         obj = Heuristic(current_state, goal)
-        if heuristic == 1:
+        if heuristic == 1:            
             distance = obj.manhattan(distance, size)
         elif heuristic == 2:
             distance = obj.manhattan(distance, size, True)

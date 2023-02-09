@@ -70,7 +70,7 @@ class Node:
         if not list(node_copy) in a:
             node_copy = Node(node_copy)
             node_copy.update_gn(g)
-            distance = greedy.greedy(node_copy, goal_node, g, heuristic, size)
+            distance = greedy.greedy(node_copy, goal_node, heuristic, size)
             node_copy.update_hn(distance)
             node_copy.update_parent(current_node)
             node_copy.update_move(move_string)
@@ -78,15 +78,15 @@ class Node:
 
     # exploring the next states
     def expand_node_greedy(current_node, goal_node, blank_spaces, heuristic, size, distance, count):
-        current_node_array = np.asarray(current_node.get_current_state())
-        branching_factor = 0
+        current_node_array = np.asarray(current_node.get_current_state())    
         best_node = current_node
+
         for blank_space_index in blank_spaces : # considered blankspace as a list of index with 0 value  
             #print(distance, current_node)
+            
             if blank_space_index+1 > size[1]: #blank space is not on top layer
                 if current_node_array[blank_space_index - size[1]] != 0:
                     #print('not on top')
-                    branching_factor += 1
                     switch_tile = current_node_array[blank_space_index - size[1]]
                     node_copy = current_node_array.copy()
                     #print('goal node:', type(goal_node))
@@ -103,12 +103,12 @@ class Node:
                         best_node = Node(node_copy)
                         best_node.update_parent(current_node)
                         best_node.update_move(move_string)
-                    count = count + 1
-
+                        count = count +1
+                        return best_node, distance, count
+                                            
             if blank_space_index+1 < size[0]*size[1]+1 - size[1]: #blank space is not on bottom layer
                 if current_node_array[blank_space_index + size[1]] != 0:
                     #print('not on bottom')
-                    branching_factor += 1
                     switch_tile = current_node_array[blank_space_index + size[1]]
                     node_copy = current_node_array.copy()
                     move = Movements(node_copy, current_node_array, blank_space_index,size)
@@ -122,11 +122,11 @@ class Node:
                         best_node = Node(node_copy)
                         best_node.update_parent(current_node)
                         best_node.update_move(move_string)
-                    count = count + 1
-
+                        count = count +1
+                        return best_node, distance, count
+                    
             if blank_space_index % size[0] > 0:
                 if current_node_array[blank_space_index - 1] != 0:
-                    branching_factor += 1
                     switch_tile = current_node_array[blank_space_index - 1]
                     node_copy = current_node_array.copy()
                     move = Movements(node_copy, current_node_array, blank_space_index,size)
@@ -140,11 +140,11 @@ class Node:
                         best_node = Node(node_copy)
                         best_node.update_parent(current_node)
                         best_node.update_move(move_string)
-                    count = count + 1
-
+                        count = count +1
+                        return best_node, distance, count
+                        
             if (blank_space_index + 1) % size[0] != 0:
                 if current_node_array[blank_space_index + 1] != 0: 
-                    branching_factor += 1
                     switch_tile = current_node_array[blank_space_index + 1]
                     node_copy = current_node_array.copy()
                     move = Movements(node_copy, current_node_array, blank_space_index,size)
@@ -162,10 +162,12 @@ class Node:
                         best_node = Node(node_copy)
                         best_node.update_parent(current_node)
                         best_node.update_move(move_string)
-                    count = count + 1
+                        count = count +1
+                        return best_node, distance, count
+                            
         #print('Branching Factor: ',branching_factor)
         #print('Distance: ', distance)
-        current_node.update_branching_factor(branching_factor)
+        #print('Best Node: ',best_node.get_current_state())
         return best_node, distance, count
     
     def expand_node(fringe, explored_nodes, current_node, goal_node, blank_spaces, g, count, heuristic, size):
@@ -237,12 +239,12 @@ class Node:
             explored_nodes.append(current_node)
             current_node_array = np.asarray(current_node.get_current_state())
             branching_factor = 0
-            heuristic = [3,heuristic]
+            #heuristic = [3,heuristic]
             for blank_space_index in blank_spaces : # considered blankspace as a list of index with 0 value
                 #if item - size[0]*size[1] >=0:   # size is size of matrix
                 if blank_space_index+1 > size[1]: #blank space is not on top layer
                     if current_node_array[blank_space_index - size[1]] != 0:
-                        #print('not on top')
+                        #print('NOT ON TOP')
                         branching_factor += 1
                         switch_tile = current_node_array[blank_space_index - size[1]]
                         node_copy = current_node_array.copy()
@@ -256,7 +258,7 @@ class Node:
 
                 if blank_space_index+1 < size[0]*size[1]+1 - size[1]: #blank space is not on bottom layer
                     if current_node_array[blank_space_index + size[1]] != 0:
-                        #print('not on bottom')
+                        #print('NOT ON BOTTOM')
                         branching_factor += 1
                         switch_tile = current_node_array[blank_space_index + size[1]]
                         node_copy = current_node_array.copy()
@@ -270,6 +272,7 @@ class Node:
 
                 if blank_space_index % size[0] > 0:
                     if current_node_array[blank_space_index - 1] != 0:
+                        #print('NOT ON LEFT')
                         branching_factor += 1
                         switch_tile = current_node_array[blank_space_index - 1]
                         node_copy = current_node_array.copy()
@@ -282,7 +285,8 @@ class Node:
                         count = count + 1
 
                 if (blank_space_index + 1) % size[0] != 0:
-                    if current_node_array[blank_space_index + 1] != 0: 
+                    if current_node_array[blank_space_index + 1] != 0:
+                        #print('NOT ON RIGHT') 
                         branching_factor += 1
                         switch_tile = current_node_array[blank_space_index + 1]
                         node_copy = current_node_array.copy()
@@ -293,7 +297,7 @@ class Node:
                         #print(move_string)
                         Node.update_expanded_greedy_star(goal_node, heuristic, size, current_node, fringe, node_copy, a, g, move_string)
                         count = count + 1
-            print('Branching Factor: ',branching_factor)
+            #print('Branching Factor: ',branching_factor)
             current_node.update_branching_factor(branching_factor)
             return count
 

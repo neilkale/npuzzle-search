@@ -4,6 +4,7 @@ import os
 from node import Distance
 from node import Node
 from puzzle import Puzzle
+import greedy
 import utility
 import astar
 
@@ -29,6 +30,25 @@ def get_final_solution_state(initial_state, size, heuristic):
         final_state = final_state_blanks_at_end
     return initial_state, final_state, distance
 
+def get_final_solution_state_greedy(initial_state, size, heuristic):
+    final_states = utility.get_final_states(initial_state, size)
+    final_state_blanks_at_end = final_states[0]
+    final_state_blanks_at_beginning = final_states[1]
+    initial_state = Node(initial_state)
+    final_state_blanks_at_end = Node(final_state_blanks_at_end)
+    final_state_blanks_at_beginning = Node(final_state_blanks_at_beginning)
+
+    distance0 = greedy.greedy(initial_state, final_state_blanks_at_end, heuristic, size)
+    distance1 = greedy.greedy(initial_state, final_state_blanks_at_beginning, heuristic, size)
+
+    if distance1 < distance0:
+        distance = distance1
+        final_state = final_state_blanks_at_beginning
+    else:
+        distance = distance0
+        final_state = final_state_blanks_at_end
+    return initial_state, final_state, distance
+
 def main_function():
     #Initialize
     os.system('cls')
@@ -41,17 +61,18 @@ def main_function():
     initial_state, size = utility.read_data_csv('./board1.csv')
 
     # Get final state and update to node format
-    initial_state, final_state, distance = get_final_solution_state(initial_state,size, heuristic)
+    initial_state_node, final_state_node, distance = get_final_solution_state(initial_state,size, heuristic)
     
     # Run A* Using the sliding tile heuristic
     start = timeit.default_timer()
-    astar.astar(initial_state, final_state, distance, heuristic, size)
+    astar.astar(initial_state_node, final_state_node, distance, heuristic, size)
     stop = timeit.default_timer()
     print('Time: ', stop - start)
 
     # Run A* with the greedy heuristic
+    initial_state_node, final_state_node, distance = get_final_solution_state_greedy(initial_state,size, heuristic)
     start = timeit.default_timer()   
-    astar.astar_greedy(initial_state, final_state, distance, heuristic, size)
+    astar.astar_greedy(initial_state_node, final_state_node, distance, heuristic, size)
     stop = timeit.default_timer()
     print('Time: ', stop - start)
     

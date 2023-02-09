@@ -49,12 +49,9 @@ def astar(initial_state, final_state, distance, heuristic, size):
 def astar_greedy(initial_state, final_state, distance, heuristic, size):
 
     All_states = []
-    data = []
     explored_nodes = []
     fringe = [initial_state]
-
     
-
     fringe[0].update_hn(distance)
     count = 1
 
