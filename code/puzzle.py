@@ -9,14 +9,14 @@ class Puzzle:
         minimum_fn = min(fn_fringe)
         minimum_fn_index = fn_fringe.index(minimum_fn)
         return minimum_fn_index
-
+    
     def print_state(node, size):
         base = "-------"
 
         print("g(n) = ", node.get_gn(), " h(n) = ",
               node.get_hn(), " f(n) = ", node.get_fn(), "\n")
         
-        print(node.get_node_move())
+        #print(node.get_node_move())
         
         matrix = np.matrix(node.get_current_state()).reshape(size)
 

@@ -8,6 +8,7 @@ from puzzle import Puzzle
 import greedy
 import utility
 import astar
+import part2
 
 # Call utility function to generate arrays for the two possible final states, and pick the closest to the starting position
 def get_final_solution_state(initial_state, size, heuristic):
@@ -69,9 +70,10 @@ def main_function():
     try:
         initial_state, size = utility.read_data_csv('./'+str(board_file))
         # Get final state and update to node format
-       
+        if heuristic_specifier == 'part2':
+            part2.part2()
         
-        if heuristic_specifier == 'sliding':
+        elif heuristic_specifier == 'sliding':
             # Run A* Using the sliding tile heuristic
             initial_state_node, final_state_node, distance = get_final_solution_state(initial_state,size, heuristic)
             start = timeit.default_timer()
@@ -86,7 +88,7 @@ def main_function():
             stop = timeit.default_timer()
             print('Time: ', stop - start)
         else: 
-            print('Heuristic invalid. Please run: \n npuzzle.py board1.csv sliding true \n or \n npuzzle.py board1.csv greedy true.')
+            print('Heuristic invalid. Please run: \n npuzzle.py board1.csv sliding true \n or \n npuzzle.py board1.csv part2 true \n or \n npuzzle.py board1.csv greedy true.')
     except FileNotFoundError:
         print('File not found. Please run: \n npuzzle.py board1.csv sliding true \n with a valid board file.')
     
