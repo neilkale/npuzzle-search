@@ -36,10 +36,6 @@ class Heuristic:
                 distance = distance + temp
                 if include_weight:
                     distance = (temp * self.current_state[i]) + distance
-<<<<<<< HEAD
-        
-=======
->>>>>>> part3
         return distance
 
 # Distance Class to Calculate the Manhattan and Misplaced Tiles and new Distance.

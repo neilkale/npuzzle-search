@@ -49,19 +49,11 @@ class Puzzle:
             Puzzle.print_state(i, size)
             
         print("Goal Reached! \n")
-<<<<<<< HEAD
-        print("Depth :", len(path))
-        print("The number of nodes expanded: ", nodes_expanded, "\n")
-        print("The number of nodes generated: ", count, "\n")
-        print("Path Cost: ", len(path) - 1, "\n")
-        print("Average Branching Factor: ", sum(branching_factor_array)/len(branching_factor_array),"\n")
-=======
         print("Depth : ", len(path))
         print("The number of nodes expanded: ", nodes_expanded)
         print("The number of nodes generated: ", count)
         print("Path Cost: ", len(path) - 1)
         print("Average Branching Factor: ", nodes_expanded**(1/len(path)),"\n")
->>>>>>> part3
 
     def path(explored_nodes):
         explored_nodes.pop()

@@ -172,10 +172,6 @@ class Node:
             if blank_space_index+1 > size[1]: #blank space is not on top layer
                 if current_node_array[blank_space_index - size[1]] != 0:
                     #print('not on top')
-<<<<<<< HEAD
-                    # branching_factor += 1
-=======
->>>>>>> part3
                     switch_tile = current_node_array[blank_space_index - size[1]]
                     node_copy = current_node_array.copy()
                     move = Movements(node_copy, current_node_array, blank_space_index,size)
@@ -189,10 +185,6 @@ class Node:
             if blank_space_index+1 < size[0]*size[1]+1 - size[1]: #blank space is not on bottom layer
                 if current_node_array[blank_space_index + size[1]] != 0:
                     #print('not on bottom')
-<<<<<<< HEAD
-                    # branching_factor += 1
-=======
->>>>>>> part3
                     switch_tile = current_node_array[blank_space_index + size[1]]
                     node_copy = current_node_array.copy()
                     move = Movements(node_copy, current_node_array, blank_space_index,size)
@@ -205,10 +197,6 @@ class Node:
 
             if blank_space_index % size[0] > 0:
                 if current_node_array[blank_space_index - 1] != 0:
-<<<<<<< HEAD
-                    # branching_factor += 1
-=======
->>>>>>> part3
                     switch_tile = current_node_array[blank_space_index - 1]
                     node_copy = current_node_array.copy()
                     move = Movements(node_copy, current_node_array, blank_space_index,size)
@@ -221,10 +209,6 @@ class Node:
 
             if (blank_space_index + 1) % size[0] != 0:
                 if current_node_array[blank_space_index + 1] != 0: 
-<<<<<<< HEAD
-                    # branching_factor += 1
-=======
->>>>>>> part3
                     switch_tile = current_node_array[blank_space_index + 1]
                     node_copy = current_node_array.copy()
                     move = Movements(node_copy, current_node_array, blank_space_index,size)
@@ -234,11 +218,6 @@ class Node:
                     #print(move_string)
                     Node.update_expanded(goal_node, heuristic, size, current_node, fringe, node_copy, a, g, move_string)
                     count = count + 1
-<<<<<<< HEAD
-        # print('Branching Factor: ',branching_factor)
-        current_node.update_branching_factor(branching_factor)
-=======
->>>>>>> part3
         return count
 
     def expand_node_greedy_astar(fringe, explored_nodes, current_node, goal_node, blank_spaces, g, count, heuristic, size):
