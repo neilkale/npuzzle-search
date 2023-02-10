@@ -1,8 +1,8 @@
-{'Generated': 525, 'Depth': 29, 'Expanded': 193, 'AvgBranchingFactor': 1.198981055271157}
-{'Generated': 64, 'Depth': 19, 'Expanded': 22, 'AvgBranchingFactor': 1.1766676817027193}
-{'Generated': 244, 'Depth': 17, 'Expanded': 90, 'AvgBranchingFactor': 1.3030330814364814}
-{'Generated': 25, 'Depth': 9, 'Expanded': 8, 'AvgBranchingFactor': 1.2599210498948732}
-{'Generated': 1311, 'Depth': 29, 'Expanded': 488, 'AvgBranchingFactor': 1.2379529292423708}
+{'Generated': 534, 'Depth': 24, 'Expanded': 115, 'AvgBranchingFactor': 1.2186034687695926}
+{'Generated': 388, 'Depth': 25, 'Expanded': 79, 'AvgBranchingFactor': 1.1909816869978849}
+{'Generated': 128, 'Depth': 12, 'Expanded': 27, 'AvgBranchingFactor': 1.3160740129524924}
+{'Generated': 32, 'Depth': 7, 'Expanded': 6, 'AvgBranchingFactor': 1.2917083420907467}
+{'Generated': 408, 'Depth': 23, 'Expanded': 86, 'AvgBranchingFactor': 1.2136923884499295}
 {'Generated': 527, 'Depth': 21, 'Expanded': 108, 'AvgBranchingFactor': 1.2497688695572076}
 {'Generated': 248, 'Depth': 18, 'Expanded': 53, 'AvgBranchingFactor': 1.2467894073120835}
 {'Generated': 128, 'Depth': 12, 'Expanded': 27, 'AvgBranchingFactor': 1.3160740129524924}
