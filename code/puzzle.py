@@ -12,7 +12,7 @@ class Puzzle:
     def print_state(node, size):
         base = "-------"
      
-
+        # pass
         print( " h(n) = ", node.get_hn(), "\n")
         
         matrix = np.matrix(node.get_current_state()).reshape(size)

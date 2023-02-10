@@ -56,10 +56,11 @@ fringe[0].update_hn(distance)
 count = 1
 
 
+
 print("---------------Printing Solution Path---------------\n \n")
 
 
-schedule = lambda t: 10000 * math.exp(-0.000001 * t) if t < 5000 else 0
+schedule = lambda t: 9000 * math.exp(-0.002 * t) if t < 8000 else 0
 
 current_node = fringe.pop(0)
 goal_node = np.asarray(final_state.get_current_state())
@@ -77,6 +78,7 @@ for t in range(sys.maxsize):
     
     if (temprature == 0):  #If tempratre reaches to zero 
         explored_nodes.append(current_node)
+        
         Puzzle.goal_reached(explored_nodes, count, size)
         break
     else:
@@ -107,6 +109,9 @@ for t in range(sys.maxsize):
                 #print(herustic_diff)
         minimum_fn = min(herustic_diff)
 
+        # if minimum_fn > 0:
+        #     minimum_fn = random.choice(herustic_diff)
+
         minimum_fn_index = herustic_diff.index(minimum_fn)
         #print("index",minimum_fn_index)
         next_node = fringe[minimum_fn_index+k]
@@ -124,10 +129,12 @@ for t in range(sys.maxsize):
         print(delta_e)
         if delta_e < 0 or t :
             current_node = next_node
+         
             #goal_node = np.asarray(final_state.get_current_state())
             if (np.array_equal(np.asarray(current_node.get_current_state()), goal_node)):
                 distance = Distance.calculate(np.asarray(current_node.get_current_state()), goal_node, size)
                 explored_nodes.append(current_node)
+                
                 Puzzle.goal_reached(explored_nodes, count, size)
                 break
             if type(current_node.child) != list:
@@ -138,11 +145,15 @@ for t in range(sys.maxsize):
         else:
             next_node_1 = random.choice(fringe)
             current_node = next_node_1
+            print ("kkkkkk")
+            pass
+            
         fringe = []
         check = 1
     Current_time = timeit.default_timer()
     if (Current_time - start > Run_time ):
         explored_nodes.append(current_node)
+        
         Puzzle.goal_reached(explored_nodes, count, size)
         break
 
