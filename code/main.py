@@ -43,8 +43,7 @@ def main_function():
     initial_state, final_state, distance = get_final_solution_state(initial_state,size, heuristic)
        
 
-    All_states, stop = astar.astar(initial_state, final_state, distance, heuristic, size)
-    # print("all : ", len(All_states))
+    stop = astar.astar(initial_state, final_state, distance, heuristic, size)
     print('Time: ', stop - start)
 
 main_function()

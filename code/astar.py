@@ -1,6 +1,5 @@
 import timeit
 import numpy as np
-import os
 from node import Distance
 from node import Node
 from puzzle import Puzzle
@@ -44,6 +43,7 @@ def astar(initial_state, final_state, distance, heuristic, size):
                 fringe, explored_nodes, current_node, goal_node, zero, g, count, heuristic, size)
 
     stop = timeit.default_timer()
+    return stop
     
 
 def astar_greedy(initial_state, final_state, distance, heuristic, size):
