@@ -56,7 +56,7 @@ class Puzzle:
         print("Average Branching Factor: ", nodes_expanded**(1/len(path)),"\n")
         
         data = {'Generated': count, 'Depth': len(path), 'Expanded':nodes_expanded, 'AvgBranchingFactor':nodes_expanded**(1/len(path))}
-        with open('../manhattan-data.txt', 'a') as f:
+        with open('../weighted-manhattan.txt', 'a') as f:
             f.write(str(data))
             f.write('\n')
 

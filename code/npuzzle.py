@@ -60,7 +60,8 @@ def main_function():
     heuristic_specifier = sys.argv[2]
     tile_weight = sys.argv[3]
     heuristic = 1
-    if tile_weight == True:
+    
+    if tile_weight == 'true' or tile_weight == 'True':
         heuristic = 2
 
     # For reading the initial state from csv as matrix
