@@ -9,7 +9,7 @@ class Puzzle:
         minimum_fn = min(fn_fringe)
         minimum_fn_index = fn_fringe.index(minimum_fn)
         return minimum_fn_index
-
+    
     def print_state(node, size):
         base = "-------"
 

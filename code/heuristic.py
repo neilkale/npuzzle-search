@@ -38,9 +38,9 @@ class Heuristic:
                     distance = (temp * self.current_state[i]) + distance
         return distance
 
-# Distance Class to Calculate the Manhattan and Misplaced Tiles and new Distance.
+# Distance Class to Calculate the Manhattan Distance.
 class Distance:
-    def calculate(current_state, goal, heuristic, size):
+    def calculate(current_state, goal,heuristic, size):
         distance = 0
         if type(current_state) != list:
             current_state = current_state.tolist()
