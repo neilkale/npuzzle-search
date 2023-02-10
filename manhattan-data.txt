@@ -1,0 +1,3 @@
+{'Generated': 1667, 'Depth': 21, 'Expanded': 622, 'AvgBranchingFactor': 1.3584311675301894}
+{'Generated': 1667, 'Depth': 21, 'Expanded': 622, 'AvgBranchingFactor': 1.3584311675301894}
+{'Generated': 1667, 'Depth': 21, 'Expanded': 622, 'AvgBranchingFactor': 1.3584311675301894}

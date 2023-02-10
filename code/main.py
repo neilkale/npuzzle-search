@@ -41,7 +41,7 @@ def main_function():
     utility.calculate_h(size)
     # Get final state and update to node format
     initial_state, final_state, distance = get_final_solution_state(initial_state,size, heuristic)
-       
+
 
     stop = astar.astar(initial_state, final_state, distance, heuristic, size)
     print('Time: ', stop - start)

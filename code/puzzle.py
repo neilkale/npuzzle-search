@@ -54,6 +54,11 @@ class Puzzle:
         print("The number of nodes generated: ", count)
         print("Path Cost: ", len(path) - 1)
         print("Average Branching Factor: ", nodes_expanded**(1/len(path)),"\n")
+        
+        data = {'Generated': count, 'Depth': len(path), 'Expanded':nodes_expanded, 'AvgBranchingFactor':nodes_expanded**(1/len(path))}
+        with open('../manhattan-data.txt', 'a') as f:
+            f.write(str(data))
+            f.write('\n')
 
     def path(explored_nodes):
         explored_nodes.pop()
