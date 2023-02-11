@@ -55,7 +55,7 @@ class Node:
             node_copy.update_parent(current_node)
             node_copy.update_move(move_string)
             fringe.append(node_copy)
-    
+        
     @staticmethod
     # Expand greedy search nodes using the greedy search heuristic
     def update_expanded_greedy_star(goal_node, heuristic, size, current_node, fringe,node_copy, a, g, move_string):
@@ -181,13 +181,6 @@ class Node:
                     #print(move_string)
                     Node.update_expanded(goal_node, heuristic, size, current_node, fringe,node_copy, a, g, move_string)
                     count = count + 1
-                else:
-                    
-                    if (np.array_equal(np.asarray(node_copy.get_current_state()), np.asarray((current_node.get_parent()).get_current_state()))):
-                        pass
-                    else:
-                        fringe.append(node_copy)
-                        count = count + 1
 
             if blank_space_index+1 < size[0]*size[1]+1 - size[1]: #blank space is not on bottom layer
                 if current_node_array[blank_space_index + size[1]] != 0:
@@ -201,15 +194,6 @@ class Node:
                     #print(move_string)
                     Node.update_expanded(goal_node, heuristic, size, current_node, fringe,node_copy, a, g, move_string)
                     count = count + 1
-                else:
-        
-                    if (np.array_equal(np.asarray(node_copy.get_current_state()), np.asarray((current_node.get_parent()).get_current_state()))):
-                        pass
-                    else:
-                        fringe.append(node_copy)
-                        count = count + 1
-
-
 
             if blank_space_index % size[0] > 0:
                 if current_node_array[blank_space_index - 1] != 0:
@@ -222,14 +206,6 @@ class Node:
                     #print(move_string)
                     Node.update_expanded(goal_node, heuristic, size, current_node, fringe, node_copy, a, g, move_string)
                     count = count + 1
-                else:
-                 
-                    if (np.array_equal(np.asarray(node_copy.get_current_state()), np.asarray((current_node.get_parent()).get_current_state()))):
-                        pass
-                    else:
-                        fringe.append(node_copy)
-                        count = count + 1
-
 
             if (blank_space_index + 1) % size[0] != 0:
                 if current_node_array[blank_space_index + 1] != 0: 
@@ -242,13 +218,6 @@ class Node:
                     #print(move_string)
                     Node.update_expanded(goal_node, heuristic, size, current_node, fringe, node_copy, a, g, move_string)
                     count = count + 1
-                else:
-              
-                    if (np.array_equal(np.asarray(node_copy.get_current_state()), np.asarray((current_node.get_parent()).get_current_state()))):
-                        pass
-                    else:
-                        fringe.append(node_copy)
-                        count = count + 1
 
         return count
 
