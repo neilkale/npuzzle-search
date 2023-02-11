@@ -1,0 +1,10 @@
+{'Generated': 4285, 'Depth': 24, 'Expanded': 917, 'AvgBranchingFactor': 1.3287156664338409, 'Time': 2.79}
+{'Generated': 1981, 'Depth': 35, 'Expanded': 404, 'AvgBranchingFactor': 1.1870473395552257, 'Time': 0.89}
+{'Generated': 3131, 'Depth': 16, 'Expanded': 665, 'AvgBranchingFactor': 1.5011578195181094, 'Time': 1.39}
+{'Generated': 1743, 'Depth': 29, 'Expanded': 346, 'AvgBranchingFactor': 1.2233602025212031, 'Time': 0.77}
+{'Generated': 266, 'Depth': 23, 'Expanded': 59, 'AvgBranchingFactor': 1.1939704151015773, 'Time': 0.14}
+{'Generated': 272, 'Depth': 15, 'Expanded': 56, 'AvgBranchingFactor': 1.3078136577370625, 'Time': 0.15}
+{'Generated': 4442, 'Depth': 36, 'Expanded': 954, 'AvgBranchingFactor': 1.2099438951313117, 'Time': 2.31}
+{'Generated': 3131, 'Depth': 16, 'Expanded': 665, 'AvgBranchingFactor': 1.5011578195181094, 'Time': 1.50}
+{'Generated': 4229, 'Depth': 17, 'Expanded': 906, 'AvgBranchingFactor': 1.49261814739446, 'Time': 2.04}
+{'Generated': 1425, 'Depth': 27, 'Expanded': 285, 'AvgBranchingFactor': 1.2328782188300553, 'Time': 0.62}
