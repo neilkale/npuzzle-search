@@ -16,7 +16,7 @@ def astar(initial_state, final_state, distance, heuristic, size):
     count = 1
 
     print("---------------Printing Solution Path---------------\n \n")
-
+    times = []
     while  fringe:
         # select minimum fn for expand
         minimum_fn_index = Puzzle.least_fn(fringe)
@@ -32,13 +32,14 @@ def astar(initial_state, final_state, distance, heuristic, size):
                 current_node.get_current_state()), goal_node, heuristic, size)
             explored_nodes.append(current_node)
             Puzzle.goal_reached(explored_nodes, count, size)
+            print('Average Heuristic Calculation Time: ',sum(times)/len(times))
             fringe = []
         elif not np.array_equal(current_node, goal_node):
             zero = np.where(np.asarray(
                 current_node.get_current_state()) == 0)[0]
             #print(zero)
-            count = Node.expand_node(
-                fringe, explored_nodes, current_node, goal_node, zero, g, count, heuristic, size)
+            count, times = Node.expand_node(
+                fringe, explored_nodes, current_node, goal_node, zero, g, count, heuristic, size, times)
 
     stop = timeit.default_timer()
     return stop
@@ -54,7 +55,7 @@ def astar_greedy(initial_state, final_state, distance, heuristic, size):
     count = 1
 
     print("---------------Printing Solution Path---------------\n \n")
-
+    times = []
     while  fringe:
         # select minimum fn for expand
         minimum_fn_index = Puzzle.least_fn(fringe)
@@ -69,12 +70,13 @@ def astar_greedy(initial_state, final_state, distance, heuristic, size):
             distance = Distance.calculate(np.asarray(current_node.get_current_state()), goal_node, heuristic, size)
             explored_nodes.append(current_node)
             Puzzle.goal_reached(explored_nodes, count, size)
+            print('Average Heuristic Calculation Time: ',sum(times)/len(times))
             fringe = []
         elif not np.array_equal(current_node, goal_node):
             zero = np.where(np.asarray(current_node.get_current_state()) == 0)[0]
             #print(zero)
-            count = Node.expand_node_greedy_astar(
-                fringe, explored_nodes, current_node, final_state, zero, g, count, heuristic, size)
+            count, times = Node.expand_node_greedy_astar(
+                fringe, explored_nodes, current_node, final_state, zero, g, count, heuristic, size, times)
 
     
     
