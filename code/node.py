@@ -42,9 +42,7 @@ class Node:
         explored_nodes.append(current_node)
         current_node_array = np.asarray(current_node.get_current_state())
         for blank_space_index in blank_spaces : # considered blankspace as a list of index with 0 value
-            #print(blank_space_index+1, size[0]*size[1]+1 - size[1])
-            
-            #if item - size[0]*size[1] >=0:   # size is size of matrix
+          
             if blank_space_index+1 > size[1]: #blank space is not on top layer
                 #print('not on top')
                 node_copy = current_node_array.copy()
@@ -57,21 +55,13 @@ class Node:
                 node_copy.update_hn(distance)
                 node_copy.update_parent(current_node)
                 
-                #print("Newup-",np.asarray(node_copy.get_current_state()))
-                #K = current_node.get_parent()
-                # print(dir(K))
-                # print(dir(current_node.get_parent()))
-
-                #parent= K.get_current_state()
-                #print (np.asarray(parent))
-                #print("parent",np.asarray((current_node.get_parent()).get_current_state()))
+            
                 
                 if (check == 0):
                     fringe.append(node_copy)
                     count = count + 1
                 else:
-                    # print("Newup-",np.asarray(node_copy.get_current_state()))
-                    # print("parent",np.asarray((current_node.get_parent()).get_current_state()))
+                    
                     if (np.array_equal(np.asarray(node_copy.get_current_state()), np.asarray((current_node.get_parent()).get_current_state()))):
                         pass
                     else:
@@ -91,16 +81,14 @@ class Node:
                 node_copy.update_hn(distance)
                 node_copy.update_parent(current_node)
                 
-                # print("Newdown-",np.asarray(node_copy.get_current_state()))
-                # print("parent",np.asarray(current_node.get_parent())) 
+        
                 
                 
                 if (check == 0):
                     fringe.append(node_copy)
                     count = count + 1
                 else:
-                    # print("Newup-",np.asarray(node_copy.get_current_state()))
-                    # print("parent",np.asarray((current_node.get_parent()).get_current_state()))
+        
                     if (np.array_equal(np.asarray(node_copy.get_current_state()), np.asarray((current_node.get_parent()).get_current_state()))):
                         pass
                     else:
@@ -120,15 +108,12 @@ class Node:
                 node_copy.update_gn(g)
                 node_copy.update_hn(distance)
                 node_copy.update_parent(current_node)
-                # print("Newleft-",(np.asarray(node_copy.get_current_state())))
-                # print("parent",(np.asarray(current_node.get_parent()))) 
-                
+               
                 if (check == 0):
                     fringe.append(node_copy)
                     count = count + 1
                 else:
-                    # print("Newup-",np.asarray(node_copy.get_current_state()))
-                    # print("parent",np.asarray((current_node.get_parent()).get_current_state()))
+                 
                     if (np.array_equal(np.asarray(node_copy.get_current_state()), np.asarray((current_node.get_parent()).get_current_state()))):
                         pass
                     else:
@@ -147,15 +132,12 @@ class Node:
                 node_copy.update_gn(g)
                 node_copy.update_hn(distance)
                 node_copy.update_parent(current_node)
-                # print("Newright-",np.asarray(node_copy.get_current_state()))
-                # print("parent",np.asarray(current_node.get_parent())) 
 
                 if (check == 0):
                     fringe.append(node_copy)
                     count = count + 1
                 else:
-                    # print("Newup-",np.asarray(node_copy.get_current_state()))
-                    # print("parent",np.asarray((current_node.get_parent()).get_current_state()))
+              
                     if (np.array_equal(np.asarray(node_copy.get_current_state()), np.asarray((current_node.get_parent()).get_current_state()))):
                         pass
                     else:

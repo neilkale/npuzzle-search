@@ -47,6 +47,7 @@ class Puzzle:
         print("The number of nodes expanded: ", nodes_expanded, "\n")
         print("The number of nodes generated: ", count, "\n")
         print("Path Cost: ", len(path) - 1, "\n")
+        print("Branching Factor: ", pow(count,(1/nodes_expanded)), "\n" )
 
     def path(explored_nodes):
         explored_nodes.pop()
