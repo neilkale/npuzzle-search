@@ -9,7 +9,7 @@ class Node:
     # initialize the node with the board config
     def __init__(self, s):
         self.child = s
-        self.parent = []
+        self.parent = None
         self.gn = 0  # cost
         self.hn = 0  # heuristic
         self.fn = 0  # evaluator
@@ -25,7 +25,7 @@ class Node:
         return self.gn
 
     def get_fn(self):
-        return self.hn
+        return self.gn + self.hn
 
     def get_current_state(self):
         return self.child
@@ -185,9 +185,7 @@ class Node:
                     #print(move_string)
                     Node.update_expanded(goal_node, heuristic, size, current_node, fringe,node_copy, a, g, move_string)
                     count = count + 1
-                    stop = timeit.default_timer()
-                    #print('Time: ', stop - start)
-                    times.append(stop-start)
+
 
 
             if blank_space_index+1 < size[0]*size[1]+1 - size[1]: #blank space is not on bottom layer

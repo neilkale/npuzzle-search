@@ -1,10 +1,10 @@
-{'Generated': 20048, 'Depth': 16, 'Expanded': 4184, 'AvgBranchingFactor': 1.6840286653574992}
-{'Generated': 76127, 'Depth': 19, 'Expanded': 16197, 'AvgBranchingFactor': 1.6655174549264564}
-{'Generated': 1374, 'Depth': 12, 'Expanded': 270, 'AvgBranchingFactor': 1.5944600674942637}
-{'Generated': 203, 'Depth': 7, 'Expanded': 40, 'AvgBranchingFactor': 1.6938139800964527}
-{'Generated': 5244, 'Depth': 15, 'Expanded': 1080, 'AvgBranchingFactor': 1.5930457575855583}
-{'Generated': 11987, 'Depth': 15, 'Expanded': 2519, 'AvgBranchingFactor': 1.685576797733536}
-{'Generated': 2355, 'Depth': 14, 'Expanded': 464, 'AvgBranchingFactor': 1.5504778632718366}
-{'Generated': 1374, 'Depth': 12, 'Expanded': 270, 'AvgBranchingFactor': 1.5944600674942637}
-{'Generated': 407, 'Depth': 9, 'Expanded': 85, 'AvgBranchingFactor': 1.638248883451656}
-{'Generated': 14706, 'Depth': 17, 'Expanded': 3124, 'AvgBranchingFactor': 1.605355560952058}
+{'Generated': 20048, 'Depth': 16, 'Expanded': 4184, 'AvgBranchingFactor': 1.6840286653574992, 'Time': 27.06}
+{'Generated': 76127, 'Depth': 19, 'Expanded': 16197, 'AvgBranchingFactor': 1.6655174549264564, 'Time': 348.00}
+{'Generated': 1374, 'Depth': 12, 'Expanded': 270, 'AvgBranchingFactor': 1.5944600674942637, 'Time': 0.089}
+{'Generated': 203, 'Depth': 7, 'Expanded': 40, 'AvgBranchingFactor': 1.6938139800964527, 'Time': 0.017}
+{'Generated': 5244, 'Depth': 15, 'Expanded': 1080, 'AvgBranchingFactor': 1.5930457575855583, 'Time': 0.932}
+{'Generated': 11987, 'Depth': 15, 'Expanded': 2519, 'AvgBranchingFactor': 1.685576797733536, 'Time': 4.42}
+{'Generated': 2355, 'Depth': 14, 'Expanded': 464, 'AvgBranchingFactor': 1.5504778632718366, 'Time': 0.223}
+{'Generated': 1374, 'Depth': 12, 'Expanded': 270, 'AvgBranchingFactor': 1.5944600674942637, 'Time': 0.116}
+{'Generated': 407, 'Depth': 9, 'Expanded': 85, 'AvgBranchingFactor': 1.638248883451656, 'Time': 0.042}
+{'Generated': 14706, 'Depth': 17, 'Expanded': 3124, 'AvgBranchingFactor': 1.605355560952058, 'Time': 8.241}
