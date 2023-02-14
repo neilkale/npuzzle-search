@@ -1,0 +1,10 @@
+{'Generated':16526, 'Depth': 3991, 'Expanded': 3991, 'AvgBranchingFactor': 1.0024, 'Time':14.626}
+{'Generated': 19120, 'Depth': 4501, 'Expanded': 4501, 'AvgBranchingFactor': 1.002, 'Time': 16.976}
+{'Generated': 11903, 'Depth': 2591, 'Expanded': 2591, 'AvgBranchingFactor': 1.003, 'Time': 7.231}
+{'Generated': 48, 'Depth': 10, 'Expanded': 10, 'AvgBranchingFactor': 1.47, 'Time': 0.01}
+{'Generated': 11008, 'Depth': 2689, 'Expanded': 2689, 'AvgBranchingFactor': 1.0034, 'Time': 7.64}
+{'Generated': 15548, 'Depth': 3116, 'Expanded': 3128, 'AvgBranchingFactor': 1.003, 'Time': 1.003}
+{'Generated': 17981, 'Depth': 4351, 'Expanded': 4351, 'AvgBranchingFactor': 1.0022, 'Time': 16.12}
+{'Generated': 19098, 'Depth': 4248, 'Expanded': 4248, 'AvgBranchingFactor': 1.0023, 'Time': 1.50}
+{'Generated': 16395, 'Depth': 3987, 'Expanded': 3987, 'AvgBranchingFactor': 1.0024, 'Time': 15.54}
+{'Generated': 11174, 'Depth': 2685, 'Expanded': 2685, 'AvgBranchingFactor': 1.003, 'Time': 7.62}
